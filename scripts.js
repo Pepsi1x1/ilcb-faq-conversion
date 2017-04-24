@@ -98,7 +98,7 @@ function getAsText(fileToRead) {
     // Read file into memory as UTF-8      
     reader.readAsText(fileToRead);
     // Handle errors load
-    if (fileToRead.endsWith(".js")) {
+    if (fileToRead.name.endsWith(".js")) {
         reader.onload = loadHandlerJs;
     }
     else {
