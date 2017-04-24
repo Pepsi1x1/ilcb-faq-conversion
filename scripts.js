@@ -8,7 +8,7 @@ function jsToFaqJson(jsStr) {
     //usually just going to be a semi colon to remove
     str = str.substring(0, str.lastIndexOf("]") + 1);
     // Get rid of string concatenation to give us pure json ie " " + " "
-    str = str.replace("\"[ \t]*\+[ \t]*\n[ \t]*\"", "");
+    str = str.replace(/\"[ \t]*\+[ \t]*\n[ \t]*\"/g, "");
     return str;
 }
 
