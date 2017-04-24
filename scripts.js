@@ -4,9 +4,9 @@ function jsonToFaqJs(jsonStr) {
 
 function jsToFaqJson(jsStr) {
     //"var faq = ["
-    var str = str.substring(str.indexOf("["));
+    var str = jsStr.substring(jsStr.indexOf("["));
     //usually just going to be a semi colon to remove
-    str = substring(0, str.lastIndexOf("]") + 1);
+    str = str.substring(0, str.lastIndexOf("]") + 1);
     // Get rid of string concatenation to give us pure json ie " " + " "
     str = str.replace("\"[ \t]*\+[ \t]*\n[ \t]*\"", "");
     return str;
