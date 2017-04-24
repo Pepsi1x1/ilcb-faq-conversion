@@ -1,14 +1,16 @@
 function jsonToFaqJs(jsonStr) {
-    return "var faq = " + jsonStr + ";";
+    return 'var faq = ' + jsonStr + ';';
 }
 
 function jsToFaqJson(jsStr) {
     //"var faq = ["
-    var str = jsStr.substring(jsStr.indexOf("["));
+    var str = jsStr.substring(jsStr.indexOf('['));
     //usually just going to be a semi colon to remove
-    str = str.substring(0, str.lastIndexOf("]") + 1);
+    str = str.substring(0, str.lastIndexOf(']') + 1);
     // Get rid of string concatenation to give us pure json ie " " + " "
-    str = str.replace(/\"[ \t]*\+[ \t]*\n[ \t]*\"/g, "");
+    str = str.replace(/\"[ \t]*\+[ \t]*\n[ \t]*\"/g, '');
+    //Remove multiline comments from the source
+    str = str.replace(/\/\*.+?\*\//g, '');
     return str;
 }
 
