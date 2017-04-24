@@ -2,6 +2,16 @@ function jsonToFaqJs(jsonStr) {
     return "var faq = " + jsonStr + ";";
 }
 
+function jsToFaqJson(jsStr) {
+    //"var faq = ["
+    var str = str.substring(str.indexOf("["));
+    //usually just going to be a semi colon to remove
+    str = substring(0, str.lastIndexOf("]") + 1);
+    // Get rid of string concatenation to give us pure json ie " " + " "
+    str = str.replace("\"[ \t]*\+[ \t]*\n[ \t]*\"", "");
+    return str;
+}
+
 //var csv is the CSV file with headers
 function CSV2JSON(csv) {
 
@@ -100,12 +110,16 @@ function getAsText(fileToRead) {
 
 function loadHandlerCSV(event) {
     var csv = event.target.result;
-    CSV2JSON(csv);
+    var json = CSV2JSON(csv);
+    var js = jsonToFaqJs(json);
+    downloadStringAsJsFile(js);
 }
 
 function loadHandlerJS(event) {
     var json = event.target.result;
-    JSON2CSV(json);
+    var json = jsToFaqJson(json);
+    var csv = JSON2CSV(json);
+    downloadStringAsCSV(csv);
 }
 
 
