@@ -112,7 +112,8 @@ function getAsText(fileToRead) {
 
 function loadHandlerCSV(event) {
     var csv = event.target.result;
-    var json = CSV2JSON(csv);
+    var objectArray = Papa.parse(csv, { header: true, dynamicTyping: true}).data;
+    var json = JSON.stringify(objectArray);
     var js = jsonToFaqJs(json);
     downloadStringAsJsFile(js);
 }
@@ -120,7 +121,7 @@ function loadHandlerCSV(event) {
 function loadHandlerJS(event) {
     var json = event.target.result;
     var json = jsToFaqJson(json);
-    var csv = JSON2CSV(json);
+    var csv = Papa.unparse(json);
     downloadStringAsCSV(csv);
 }
 
