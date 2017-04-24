@@ -99,7 +99,7 @@ function getAsText(fileToRead) {
     reader.readAsText(fileToRead);
     // Handle errors load
     if (fileToRead.name.endsWith(".js")) {
-        reader.onload = loadHandlerJs;
+        reader.onload = loadHandlerJS;
     }
     else {
         reader.onload = loadHandlerCSV;
